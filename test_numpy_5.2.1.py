@@ -25,7 +25,7 @@ def  inference(input_tensor, avg_class, weights1, biases1, weights2, biases2):
 		# 计算隐藏层的前向传播结果，这里使用了ReLU激活函数
 		layer1 = tf.nn.relu(tf.matmul(input_tensor, weights1) + biases1)
 
-		# 计算输入层的前向传播结果。因为在计算损失函数时会一并计算softmax函数，所以这里不需要加入激活函数。
+		# 计算输出层的前向传播结果。因为在计算损失函数时会一并计算softmax函数，所以这里不需要加入激活函数。
 		# 而且不加入softmax不会影响预测结果。因为预测时使用的是不同类别对应节点输出值的相对大小，
 		# 有没有softmax层对最后分类结果的计算没有影响。于是在计算整个神经网络的前向传播时可以不加入最后的softmax层
 		return tf.matmul(layer1, weights2) + biases2
