@@ -28,6 +28,15 @@ def  inference(input_tensor, avg_class, weights1, biases1, weights2, biases2):
 		# 计算输出层的前向传播结果。因为在计算损失函数时会一并计算softmax函数，所以这里不需要加入激活函数。
 		# 而且不加入softmax不会影响预测结果。因为预测时使用的是不同类别对应节点输出值的相对大小，
 		# 有没有softmax层对最后分类结果的计算没有影响。于是在计算整个神经网络的前向传播时可以不加入最后的softmax层
+
+		# 后注：softmax回归，用来将神经网络前向传播得到的结果转变成概率分布，见P75。
+		# 后注：交叉熵（损失函数）一般会与softmax回归一起使用，所以TensorFlow对这两个功能进行了统一封装，
+		# 后注：并提供了tf.nn.softmax_cross_entropy_with_logits函数
+
+		# 后注：损失函数：
+		# 后注：1 分类问题：一般采用“交叉熵+softmax回归”，见P75；
+		# 后注：2 回归问题：一般采用“均方误差”，见P77；
+		# 后注：3 自定义损失函数：还可以自定义损失函数，见P78
 		return tf.matmul(layer1, weights2) + biases2
 
 	else:
