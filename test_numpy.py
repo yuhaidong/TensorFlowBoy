@@ -163,6 +163,7 @@ with tf.Session() as sess:
 			# 每隔一段时间计算在所有数据上的交叉熵并输出。
 			
 			# 后注：cross_entropy是前面定义的损失函数
+			# 后注：注意这里的x和y_，都是所有数据，而上面的知识从start到end的一个batch里面的数据
 			
 			total_cross_entropy = sess.run(
 				cross_entropy, feed_dict = {x : X, y_ : Y})
