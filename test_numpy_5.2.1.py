@@ -44,9 +44,9 @@ def  inference(input_tensor, avg_class, weights1, biases1, weights2, biases2):
 	else:
 		# 首先使用avg_class.average函数来计算得出变量的滑动平均值
 		layer1 = tf.nn.relu(
-			tf.matmul(input_tensor, avg_class.average(weights1)) + 
+			tf.matmul(input_tensor, avg_class.average(weights1)) +
 			avg_class.average(biases1))
-		return tf.matmul(layer1, avg_class.average(weights1)) +
+		return tf.matmul(layer1, avg_class.average(weights2)) +
 				avg_class.average(biases2)
 
 # 训练模型的过程
