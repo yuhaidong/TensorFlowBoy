@@ -166,7 +166,7 @@ def train(mnist):
 			# 可以处理所有的验证数据。为了计算方便，本样例程度没有将验证数据划分为
 			# 更小的batch。当神经网络模型比较复杂或者验证数据比较大时，太大的batch
 			# 会导致计算时间过长甚至发生内存溢出的错误
-				varidate_acc = sess.run(accuracy, feed_dict = varidate_feed)
+				varidate_acc = sess.run(accuracy, feed_dict = validate_feed)
 				print("After %d training step(s), validation accuracy "
 					"using average model is %g " % (i, validation_acc))
 
