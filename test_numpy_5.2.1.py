@@ -68,7 +68,7 @@ def train(mnist):
 
 	# 计算在当前参数下神经网络前向传播的结果。这里给出的用语计算滑动平均的类为None，
 	# 所以函数不会使用参数的滑动平均值
-	y = inference(x,None, weights1, biases1, weights2, biases2)
+	y = inference(x, None, weights1, biases1, weights2, biases2)
 
 	# 定义存储训练轮数的变量。这个变量不需要计算滑动平均值，所以这里指定这个变量为
 	# 不可训练的变量（trainable=False）。在使用TensorFlow训练神经网络时，
