@@ -66,7 +66,7 @@ def train(mnist):
 
 	biases2 = tf.Variable(tf.constant(0.1, shape = [OUTPUT_NODE]) )
 
-	# 计算在当前参数下神经网络前向传播的结果。这里给出的用语计算滑动平均的类为None，
+	# 计算在当前参数下神经网络前向传播的结果。这里给出的用于计算滑动平均的类为None，
 	# 所以函数不会使用参数的滑动平均值
 	y = inference(x, None, weights1, biases1, weights2, biases2)
 
