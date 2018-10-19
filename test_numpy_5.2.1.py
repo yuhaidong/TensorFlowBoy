@@ -46,7 +46,7 @@ def  inference(input_tensor, avg_class, weights1, biases1, weights2, biases2):
 		layer1 = tf.nn.relu(
 			tf.matmul(input_tensor, avg_class.average(weights1)) +
 			avg_class.average(biases1))
-		return tf.matmul(layer1, avg_class.average(weights2)) +
+		return tf.matmul(layer1, avg_class.average(weights2)) +	\
 				avg_class.average(biases2)
 
 # 训练模型的过程
@@ -106,7 +106,7 @@ def train(mnist):
 	cross_entropy_mean = tf.reduce_mean(cross_entropy)
 
 	# 计算L2正则化损失函数
-	regularizer = tf.contrib.layers.12_regularizer(REGULARIZATION_RATE)
+	regularizer = tf.contrib.layers.l2_regularizer(REGULARIZATION_RATE)
 
 	# 计算模型的正则化损失。一般只计算神经网络边上权重的正则化损失，而不是用偏置项。
 	regularization = regularizer(weights1) + regularizer(weights2)
@@ -173,7 +173,7 @@ with tf.Session() as sess:
 
 		# 产生这一轮使用的一个batch的训练数据，并运行训练过程
 		xs, ys = mnist.train.next_batch(BATCH_SIZE)
-		sess.run(train_op, feed_dict{x: xs, y_: ys})
+		sess.run(train_op, feed_dict = {x: xs, y_: ys})
 
 	#在训练结束之后，在测试数据上检测神经网络模型的最终正确率。
 	test_acc = sess.run(accuracy, feed_dict = test_feed)
