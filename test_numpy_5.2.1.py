@@ -147,43 +147,43 @@ def train(mnist):
 	accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
 # 初始化会话并开始训练过程。
-with tf.Session() as sess: 
-	tf.initialize_all_variables().run()
+	with tf.Session() as sess: 
+		tf.initialize_all_variables().run()
 
 	# 准备验证数据。一般在神经网络的训练过程中会通过验证数据来大致判断停止的
 	# 条件和判断训练的效果。
-	validate_feed = {x: mnist.validation.images, y_: mnist.validation.labels}
+		validate_feed = {x: mnist.validation.images, y_: mnist.validation.labels}
 
 	# 准备测试数据。在真是的应用中，这部分数据在训练时是不可见的，这个数据只是作为模型
 	# 优劣的最后判断标准
-	test_feed = {x: mnist.test.images, y_: mnist.test.labels}
+		test_feed = {x: mnist.test.images, y_: mnist.test.labels}
 
 	# 迭代地训练神经网络。
-	for i in range(TRAINING_STEPS):
+		for i in range(TRAINING_STEPS):
 		# 每1000轮输出一次在验证数据集善更多测试结果。
-		if i % 1000 == 0:
+			if i % 1000 == 0:
 			# 计算滑动平均模型在验证数据上的结果。因为MNIST数据集比较小，所以一次
 			# 可以处理所有的验证数据。为了计算方便，本样例程度没有将验证数据划分为
 			# 更小的batch。当神经网络模型比较复杂或者验证数据比较大时，太大的batch
 			# 会导致计算时间过长甚至发生内存溢出的错误
-			varidate_acc = sess.run(accuracy, feed_dict = varidate_feed)
-			print("After %d training step(s), validation accuracy "
-				"using average model is %g " % (i, validation_acc))
+				varidate_acc = sess.run(accuracy, feed_dict = varidate_feed)
+				print("After %d training step(s), validation accuracy "
+					"using average model is %g " % (i, validation_acc))
 
 		# 产生这一轮使用的一个batch的训练数据，并运行训练过程
-		xs, ys = mnist.train.next_batch(BATCH_SIZE)
-		sess.run(train_op, feed_dict = {x: xs, y_: ys})
+			xs, ys = mnist.train.next_batch(BATCH_SIZE)
+			sess.run(train_op, feed_dict = {x: xs, y_: ys})
 
 	#在训练结束之后，在测试数据上检测神经网络模型的最终正确率。
-	test_acc = sess.run(accuracy, feed_dict = test_feed)
+		test_acc = sess.run(accuracy, feed_dict = test_feed)
 
-	print("After %d training step(s), test accuracy using average "
-		"model is %g" (TRAINING_STEPS, test_acc))
+		print("After %d training step(s), test accuracy using average "
+			"model is %g" (TRAINING_STEPS, test_acc))
 
 # 主程序入口
 def main(argv = None):
 	# 声明处理MNIST数据集的类，这个类在初始化时会自动下载数据。
-	mnist = input_data.read_data_sets("/tmp/data", one_hot = True)
+	mnist = input_data.read_data_sets("MNIST_data", one_hot = True)
 	train(mnist)
 
 # TensorFlow提供的一个主程序入口，tf.app.run。会调用上面定义的main函数
