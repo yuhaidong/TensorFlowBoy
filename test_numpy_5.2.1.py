@@ -152,8 +152,7 @@ with tf.Session() as sess:
 
 	# 准备验证数据。一般在神经网络的训练过程中会通过验证数据来大致判断停止的
 	# 条件和判断训练的效果。
-	validate_feed = {x: mnist.validation.images, 
-					y_: mnist.validation.labels}
+	validate_feed = {x: mnist.validation.images, y_: mnist.validation.labels}
 
 	# 准备测试数据。在真是的应用中，这部分数据在训练时是不可见的，这个数据只是作为模型
 	# 优劣的最后判断标准
