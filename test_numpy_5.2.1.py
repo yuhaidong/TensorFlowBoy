@@ -122,50 +122,50 @@ def train(mnist):
 		mnist.train.num_examples / BATCH_SIZE, 		# 过完所有的训练数据需要的迭代次数
 		LEARNING_RATE_DECAY)						# 学习率衰减速度，也就是学习率的衰减率。
 
-# 使用tf.train.GradientDescentOptimizer优化算法来优化损失函数。
-# 注意这里损失函数包含了交叉熵损失和L2正则化损失
+	# 使用tf.train.GradientDescentOptimizer优化算法来优化损失函数。
+	# 注意这里损失函数包含了交叉熵损失和L2正则化损失
 	train_step = tf.train.GradientDescentOptimizer(learning_rate) \
 				.minimize(loss, global_step = global_step)
 
-# 在训练神经网络模型时，每过一遍数据既需要通过反向传播来更新神经网络中的参数，
-# 又要更新每一个参数的滑动平均值。为了一次完成多个操作，TensorFlow提供了
-# tf.control_dependencies和tf.group两种机制。下面两行程序和
-# train_op = tf.group(train_step, variables_averages_op)是等价的
+	# 在训练神经网络模型时，每过一遍数据既需要通过反向传播来更新神经网络中的参数，
+	# 又要更新每一个参数的滑动平均值。为了一次完成多个操作，TensorFlow提供了
+	# tf.control_dependencies和tf.group两种机制。下面两行程序和
+	# train_op = tf.group(train_step, variables_averages_op)是等价的
 	with tf.control_dependencies([train_step, variable_averages_op]) :
 		train_op = tf.no_op(name = 'train')
 
-# 检验使用了滑动平均模型的神经网络前向传播结果是否正确。tf.argmax(average_y, 1)
-# 计算每一个样例的预测答案。其中average_y是一个 batch_size * 10 的二维数组，每一行
-# 表示一个样例的前向传播结果。tf.argmax的第二个参数“1”表示选取最大值的操作仅在第一
-# 个维度中进行，也就是说，只在每一行选取最大值对应的下标。于是得到的结果是一个长度为
-# batch的一维数组，这个一维数组中的值就表示了每一个样例对应的数字识别结果。tf.equal
-# 判断两个张量的每一维是否相等，如果相等返回True，否则返回False。
+	# 检验使用了滑动平均模型的神经网络前向传播结果是否正确。tf.argmax(average_y, 1)
+	# 计算每一个样例的预测答案。其中average_y是一个 batch_size * 10 的二维数组，每一行
+	# 表示一个样例的前向传播结果。tf.argmax的第二个参数“1”表示选取最大值的操作仅在第一
+	# 个维度中进行，也就是说，只在每一行选取最大值对应的下标。于是得到的结果是一个长度为
+	# batch的一维数组，这个一维数组中的值就表示了每一个样例对应的数字识别结果。tf.equal
+	# 判断两个张量的每一维是否相等，如果相等返回True，否则返回False。
 	correct_prediction = tf.equal(tf.argmax(average_y, 1), tf.argmax(y_, 1))
 
-# 这个运算首先将一个布尔型的数值转换为实数型，然后计算平均值。这个平均值就是模型在这
-# 一组数据上的正确率。
+	# 这个运算首先将一个布尔型的数值转换为实数型，然后计算平均值。这个平均值就是模型在这
+	# 一组数据上的正确率。
 	accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
-# 初始化会话并开始训练过程。
+	# 初始化会话并开始训练过程。
 	with tf.Session() as sess: 
 		tf.initialize_all_variables().run()
 
-	# 准备验证数据。一般在神经网络的训练过程中会通过验证数据来大致判断停止的
-	# 条件和判断训练的效果。
+		# 准备验证数据。一般在神经网络的训练过程中会通过验证数据来大致判断停止的
+		# 条件和判断训练的效果。
 		validate_feed = {x: mnist.validation.images, y_: mnist.validation.labels}
 
-	# 准备测试数据。在真是的应用中，这部分数据在训练时是不可见的，这个数据只是作为模型
-	# 优劣的最后判断标准
+		# 准备测试数据。在真是的应用中，这部分数据在训练时是不可见的，这个数据只是作为模型
+		# 优劣的最后判断标准
 		test_feed = {x: mnist.test.images, y_: mnist.test.labels}
 
-	# 迭代地训练神经网络。
+		# 迭代地训练神经网络。
 		for i in range(TRAINING_STEPS):
-		# 每1000轮输出一次在验证数据集善更多测试结果。
+			# 每1000轮输出一次在验证数据集善更多测试结果。
 			if i % 1000 == 0:
-			# 计算滑动平均模型在验证数据上的结果。因为MNIST数据集比较小，所以一次
-			# 可以处理所有的验证数据。为了计算方便，本样例程度没有将验证数据划分为
-			# 更小的batch。当神经网络模型比较复杂或者验证数据比较大时，太大的batch
-			# 会导致计算时间过长甚至发生内存溢出的错误
+				# 计算滑动平均模型在验证数据上的结果。因为MNIST数据集比较小，所以一次
+				# 可以处理所有的验证数据。为了计算方便，本样例程度没有将验证数据划分为
+				# 更小的batch。当神经网络模型比较复杂或者验证数据比较大时，太大的batch
+				# 会导致计算时间过长甚至发生内存溢出的错误
 				validate_acc = sess.run(accuracy, feed_dict = validate_feed)
 				print("After %d training step(s), validation accuracy "
 					"using average model is %g " % (i, validate_acc))
@@ -174,7 +174,7 @@ def train(mnist):
 			xs, ys = mnist.train.next_batch(BATCH_SIZE)
 			sess.run(train_op, feed_dict = {x: xs, y_: ys})
 
-	#在训练结束之后，在测试数据上检测神经网络模型的最终正确率。
+		#在训练结束之后，在测试数据上检测神经网络模型的最终正确率。
 		test_acc = sess.run(accuracy, feed_dict = test_feed)
 
 		print("After %d training step(s), test accuracy using average "
