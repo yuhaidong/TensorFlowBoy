@@ -178,7 +178,7 @@ def train(mnist):
 		test_acc = sess.run(accuracy, feed_dict = test_feed)
 
 		print("After %d training step(s), test accuracy using average "
-			"model is %g" (TRAINING_STEPS, test_acc))
+			"model is %g" % (TRAINING_STEPS, test_acc))
 
 # 主程序入口
 def main(argv = None):
