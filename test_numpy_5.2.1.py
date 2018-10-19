@@ -52,7 +52,7 @@ def  inference(input_tensor, avg_class, weights1, biases1, weights2, biases2):
 # 训练模型的过程
 def train(mnist):
 	x = tf.placeholder(tf.float32, [None, INPUT_NODE], name = 'x-input')
-	y_ = tf.placeholder(tf.float32, [Node, OUTPUT_NODE], name = 'y-input')
+	y_ = tf.placeholder(tf.float32, [None, OUTPUT_NODE], name = 'y-input')
 
 	# 生成隐藏层的参数
 	weights1 = tf.Variable(
