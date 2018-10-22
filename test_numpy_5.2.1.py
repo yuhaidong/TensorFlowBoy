@@ -55,6 +55,7 @@ def train(mnist):
 	y_ = tf.placeholder(tf.float32, [None, OUTPUT_NODE], name = 'y-input')
 
 	# 生成隐藏层的参数
+	# 后注：tf.truncated_normal函数生成正态分布随机数，且值不会偏离平均值2个标准差
 	weights1 = tf.Variable(
 		tf.truncated_normal([INPUT_NODE, LAYER1_NODE], stddev = 0.1) )
 

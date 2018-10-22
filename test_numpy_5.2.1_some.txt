@@ -55,4 +55,21 @@
 	因为在优化时需要计算损失函数的偏导数，所以对含有L2正则化损失函数的优化要更加简洁。
 
 9 滑动平均模型
+	衰减率（decay）：decay用于控制模型更新的速度
+	
+	轮数（step，又num_updates）：
+		num_updates用于动态设置衰减率（decay）的大小。
+		初始化ExponentialMovingAverage时，如果使用了这个参数，那么每次使用的衰减率将是：
+							1 + num_updates
+			min { decay, ---------------------}
+							10 + num_updates
+
+	影子变量（shadow variable）：影子变量的初始值是相应变量的值，而每次运行变量更新时，影子变量的值会更新为：
+		shadow_variable = decay * shadow_variable + (1 + decay) * variable
+
+
+
+
+
+
 
