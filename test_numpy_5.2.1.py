@@ -96,7 +96,7 @@ def train(mnist):
 	# 计算交叉熵作为刻画预测值和真实值之间差距的损失函数。这里使用了TensorFlow中提供的
 	# sparse_softmax_cross_entropy_with_logits函数来计算交叉熵。当分类问题只有一个
 	# 正确答案时，可以使用这个函数来加速交叉熵的计算。MNIST问题的图片中只包含了0~9中的
-	# 一个数字，所以可以使用这个函数来计算交叉熵损失。这个函数的第一个是神经网络不包含
+	# 一个数字，所以可以使用这个函数来计算交叉熵损失。这个函数的第一个参数是神经网络不包含
 	# softmax层的前向传播结果，第二个是训练数据的正确结果。因为标准答案是一个长度为10的
 	# 一维数组，而该函数需要提供的是一个正确答案的数字，所以需要使用tf.argmax函数来得到
 	# 正确答案对应的类别编号。
@@ -171,7 +171,7 @@ def train(mnist):
 				print("After %d training step(s), validation accuracy "
 					"using average model is %g " % (i, validate_acc))
 
-		# 产生这一轮使用的一个batch的训练数据，并运行训练过程
+			# 产生这一轮使用的一个batch的训练数据，并运行训练过程
 			xs, ys = mnist.train.next_batch(BATCH_SIZE)
 			sess.run(train_op, feed_dict = {x: xs, y_: ys})
 
