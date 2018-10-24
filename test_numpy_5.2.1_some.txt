@@ -36,6 +36,38 @@
 	通过矩阵运算，每次在一个batch上优化神经网络的参数并不会比单个数据慢太多。
 	另一方面，每次使用一个batch可以大大减小收敛所需要的迭代次数，同时可以使收敛到的结果更加接近梯度下降的效果。(P83)
 
+8 指数衰减法
+	学习率（learning rate）：
+		在训练神经网络的时候，需要设置学习率控制参数更新的速度。学习率既不能过大，也不能过小。
+		过大时可能造成参数的摇摆，而不会收敛；过小时会降低优化速度。
+
+	指数衰减法（exponential decay）：
+		TensorFlow提供了tf.train.exponential_decay函数来实现指数衰减法学习率。
+		通过这个函数，可以先使用较大的学习率来快速得到一个比较优的解，然后随着迭代的继续逐步减小学习率，使模型在训练后期更加稳定。
+		exponential_decay函数会指数级的减小学习率，它实现了以下代码的功能：
+
+			decayed_learning_rate = learning_rate * decay_rate ^ ( global_step / decay_steps )
+
+		其中：
+			decayed_learning_rate:	每一轮优化时使用的学习率
+			learning_rate:			初始学习率
+			decay_rate:				衰减系数
+			global_step:			训练轮数
+			decay_steps:			衰减速度。代表了完整的使用一遍训练数据所需要的迭代轮数。
+									这个迭代轮数也就是总训练样本数除以每一个batch中的训练样本数。
+									这种设置的常用场景是每完整地过完一遍训练数据，学习率就减小一次。见P85。
+
+		TensorFlow的tf.exponential_decay函数：
+
+			learning_rate = tf.train.exponential_decay(
+				0.1, 					# 初始学习率
+				global_step, 			# 当前迭代轮数
+				100, 					# 过完所有训练数据需要的迭代轮数
+				0.96, 					# 学习率衰减速度
+				stainrcase = true		# 为true时global_step / decay_steps 会被转化为整数
+				)
+			
+
 8 正则化
 	正则化用来避免过拟合问题，思路是在损失函数中加入刻画模型复杂程度的指标。
 	假设用于刻画模型在训练数据上表现的损失函数为J(θ)，那么优化时不是直接优化J(θ)，而是优化：
