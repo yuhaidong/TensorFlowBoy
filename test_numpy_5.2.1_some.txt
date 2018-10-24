@@ -66,9 +66,15 @@
 				0.96, 					# 学习率衰减速度
 				stainrcase = true		# 为true时global_step / decay_steps 会被转化为整数
 				)
-			
+		
+		然后就可以使用指数衰减的学习率了：
 
-8 正则化
+				learning_step = tf。train.GradientDescentOptimizer(learning_rate)	\
+					.minimize(...my loss..., global_step = global_step)
+
+		在minimize函数中传入global_step将自动更新global_step参数，从而使得学习率也得到相应更新。见P86。
+
+9 正则化
 	正则化用来避免过拟合问题，思路是在损失函数中加入刻画模型复杂程度的指标。
 	假设用于刻画模型在训练数据上表现的损失函数为J(θ)，那么优化时不是直接优化J(θ)，而是优化：
 		J(θ)+λR(w)
@@ -86,7 +92,7 @@
 
 	因为在优化时需要计算损失函数的偏导数，所以对含有L2正则化损失函数的优化要更加简洁。
 
-9 滑动平均模型
+10 滑动平均模型
 	衰减率（decay）：
 		decay用于控制模型更新的速度
 	

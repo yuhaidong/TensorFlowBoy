@@ -155,16 +155,16 @@ def train(mnist):
 		# 条件和判断训练的效果。
 		validate_feed = {x: mnist.validation.images, y_: mnist.validation.labels}
 
-		# 准备测试数据。在真是的应用中，这部分数据在训练时是不可见的，这个数据只是作为模型
+		# 准备测试数据。在真实的应用中，这部分数据在训练时是不可见的，这个数据只是作为模型
 		# 优劣的最后判断标准
 		test_feed = {x: mnist.test.images, y_: mnist.test.labels}
 
 		# 迭代地训练神经网络。
 		for i in range(TRAINING_STEPS):
 			# 每1000轮输出一次在验证数据集善更多测试结果。
-			if i % 1000 == 0:
+			if i % 100 == 0:
 				# 计算滑动平均模型在验证数据上的结果。因为MNIST数据集比较小，所以一次
-				# 可以处理所有的验证数据。为了计算方便，本样例程度没有将验证数据划分为
+				# 可以处理所有的验证数据。为了计算方便，本样例程序没有将验证数据划分为
 				# 更小的batch。当神经网络模型比较复杂或者验证数据比较大时，太大的batch
 				# 会导致计算时间过长甚至发生内存溢出的错误
 				validate_acc = sess.run(accuracy, feed_dict = validate_feed)
