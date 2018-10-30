@@ -26,10 +26,11 @@ def train(mnist):
 	y_ = tf.placeholder(
 		tf.float32, [None, mnist_inference.OUTPUT_NODE], name = 'y-input')
 
+	# 后注：计算模型的正则化损失
 	regularizer = tf.contrib.layers.l2_regularizer(REGULARIZATION_RATE)
 
 	# 直接使用mnist_inference.py中定义的前向传播过程
-	y = mnist_inference.mnist_inference(x, regularizer)
+	y = mnist_inference.inference(x, regularizer)
 
 	global_step = tf.Variable(0, trainable = False)
 

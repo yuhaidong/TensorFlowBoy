@@ -10,6 +10,8 @@ LAYER1_NODE = 500
 # 保存的模型加载这些变量的取值。而且更加方便的是，因为可以在变量加载时将滑动平均变量重命名，
 # 所以可以直接通过这样的名字在训练时使用变量自定义，而在测试时使用变量的滑动平均值。
 # 在这个函数中也会将变量的正则化损失加入损失集合
+
+# 后注：regularizer为模型的正则化损失
 def get_weight_variable(shape, regularizer):
 	weight = tf.get_variable(
 		"weight", shape,
@@ -17,8 +19,8 @@ def get_weight_variable(shape, regularizer):
 
 	# 当给出了正则化生成函数时，将当前变量的正则化损失加入名字为losses的集合。在这里
 	# 使用了add_to_collection函数将一个张量加入一个集合，而这个集合的名称为losses。
-	# 这是自定义的集合，不再TensorFlow自动管理的集合列表中。
-	if regularizer != None:
+	# 这是自定义的集合，不在TensorFlow自动管理的集合列表中。
+	if regularizer != None :
 		tf.add_to_collection('losses', regularizer(weights))
 
 	return weights
