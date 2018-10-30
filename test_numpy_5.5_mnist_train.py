@@ -8,12 +8,12 @@ from tensorflow.examples.tutorials.mnist input_data
 import mnist_inference
 
 # 配置神经网络的参数
-BATCH_SIZE = 100
-LEARNING_RATE_BASE = 0.8
-LEARNING_RATE_DECAY = 0.99
-REGULARIZATION_RATE = 0.0001
-TRAINING_STEPS = 30000
-MOVING_AVERAGE_DECAY = 0.99
+BATCH_SIZE = 1000				# 后注：一个训练batch中的训练数据个数
+LEARNING_RATE_BASE = 0.8		# 后注：训练的学习率
+LEARNING_RATE_DECAY = 0.99		# 后注：学习率的衰减率
+REGULARIZATION_RATE = 0.0001	# 后注：描述训练模型复杂度的正则化项在损失函数中的系数，即“J(θ)+λR(w)”中的λ
+TRAINING_STEPS = 30000			# 后注：训练轮数
+MOVING_AVERAGE_DECAY = 0.99		# 后注：滑动平均衰减率
 
 # 模型保存的路径和文件名
 MODEL_SAVE_PATH = "/path/to/model"
