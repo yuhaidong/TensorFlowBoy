@@ -11,9 +11,10 @@
 			梯度
 			学习率
 		2)随机梯度下降
-		3)指数衰减法（反向传播算法的最终实现，先使用学习率，然后再使用损失来优化）
+		3)指数衰减法（反向传播算法的最终实现，先使用学习率，然后再使用优化函数来优化）
 			学习率（learning rate，learning_rate = tf.train.exponential_decay）
-			训练轮数(global_step，初始值设为0，然后在优化的函数中可以被自动更新)
+			训练轮数(global_step，初始值设为0，然后在优化函数中可以被自动更新)
+			优化函数(train_step = tf.train.GradientDescentOptimizer)
 
 	3 前向传播算法（损失函数），反向传播算法，都是在一定的数据量上进行的，也就用到了：
 		1)batch
