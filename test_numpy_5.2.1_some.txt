@@ -137,8 +137,9 @@
 	的值，也就是说decay比较小，而这样一来计算出来的shadow_variable（新的影子变量）受到decay的影响就比较小，而主要受到新变量的影响。
 	2. 随着num_updates值的逐渐变大，decay逐渐变大，那么新生成的shadow_variable（新的影子变量）受到原有shadow_variable（原来的影子变量）的影响就比较大，也就是说shadow_variable趋于稳定，variable（新变量）只会小幅度的对其产生影响。
 
-
-
+11 常用函数
+	tf.cast				类型转换
+	tf.reduce_mean		求平均数，可以控制维度
 
 
 

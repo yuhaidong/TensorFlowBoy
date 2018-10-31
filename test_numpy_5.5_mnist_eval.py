@@ -7,7 +7,7 @@ from tensorflow.examples.tutorials.mnist import import_data
 import mnist_inference
 import mnist_train
 
-# 每10秒家在一次最新的模型，并在测试数据上测试最新模型的正确率。
+# 每10秒加载一次最新的模型，并在测试数据上测试最新模型的正确率。
 EVAL_INTERVAL_SECS = 10
 
 def evaluate(mnist) :
