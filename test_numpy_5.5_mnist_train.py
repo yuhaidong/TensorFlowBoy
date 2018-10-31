@@ -48,7 +48,7 @@ def train(mnist):
 	# 后注：计算交叉熵平均值
 	cross_entropy_mean = tf.reduce_mean(cross_entropy)
 	# 后注：总损失
-	loss = cross_entropy_main + tf.add_n(tf.get_collection('losses'))
+	loss = cross_entropy_mean + tf.add_n(tf.get_collection('losses'))
 	# 后注：学习率
 	learning_rate = tf.train.exponential_decay(
 		LEARNING_RATE_DECAY, 
