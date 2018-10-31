@@ -132,6 +132,8 @@ def train(mnist):
 	# 又要更新每一个参数的滑动平均值。为了一次完成多个操作，TensorFlow提供了
 	# tf.control_dependencies和tf.group两种机制。下面两行程序和
 	# train_op = tf.group(train_step, variables_averages_op)是等价的
+
+	# 后注：tf.control_dependencies()函数的作用是保证里面的参数顺序顺序
 	with tf.control_dependencies([train_step, variable_averages_op]) :
 		train_op = tf.no_op(name = 'train')
 
@@ -145,6 +147,8 @@ def train(mnist):
 
 	# 这个运算首先将一个布尔型的数值转换为实数型，然后计算平均值。这个平均值就是模型在这
 	# 一组数据上的正确率。
+	# 后注：tf.cast转换数据格式
+	# 后注：tf.reduce_mean求平均值，注意如果不标明axis（轴）参数，则是对所有值求一个平均数
 	accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
 	# 初始化会话并开始训练过程。
@@ -160,6 +164,8 @@ def train(mnist):
 		test_feed = {x: mnist.test.images, y_: mnist.test.labels}
 
 		# 迭代地训练神经网络。
+		# 后注：训练 TRAINING_STEPS（TRAINING_STEPS = 30000）轮
+		# 后注：每轮用到 BATCH_SIZE（BATCH_SIZE = 100）个数据
 		for i in range(TRAINING_STEPS):
 			# 每1000轮输出一次在验证数据集善更多测试结果。
 			if i % 1000 == 0:
