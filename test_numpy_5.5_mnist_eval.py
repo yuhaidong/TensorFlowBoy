@@ -25,7 +25,7 @@ def evaluate(mnist) :
 		y = mnist_inference.inference(x, None)
 
 		# 通过变量重命名的方式来加载模型，这样在前向传播的过程中就不需要调用求滑动平均
-		# 的函数来获取平均值了。这样就可以完全公用mnist_inference.py中定义的前向传播过程
+		# 的函数来获取平均值了。这样就可以完全共用mnist_inference.py中定义的前向传播过程
 		correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
 		accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
@@ -61,6 +61,7 @@ def evaluate(mnist) :
 				time.sleep(EVAL_INTERVAL_SECS)
 
 def main(argv = None) :
+	# 声明处理MNIST数据集的类，这个类在初始化时会自动下载数据。
 	mnist = input_data.read_data_sets("/tmp/data", one_hot = True)
 	evaluate(mnist)
 

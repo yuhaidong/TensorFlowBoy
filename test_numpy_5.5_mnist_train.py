@@ -87,6 +87,7 @@ def train(mnist):
 							global_step = global_step)
 
 def main(argv = None):
+	# 声明处理MNIST数据集的类，这个类在初始化时会自动下载数据。
 	mnist = input_data.read_data_sets("/tmp/data", one_hot = True)
 	train(mnist)
 

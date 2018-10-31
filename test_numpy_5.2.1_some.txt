@@ -139,7 +139,9 @@
 
 11 常用函数
 	tf.cast				类型转换
+	tf.equal			对比这两个矩阵或者向量的同样位置的元素，如果是相等的那就返回True，反正返回False。可与tf.cast合同计算概率
 	tf.reduce_mean		求平均数，可以控制维度
+	tf.argmax			返回最大值索引号
 
 
 
