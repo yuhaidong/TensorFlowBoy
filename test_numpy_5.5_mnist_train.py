@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+1# -*- coding: utf-8 -*-
 import os
 
 import tensorflow as tf
@@ -32,6 +32,7 @@ def train(mnist):
 	# 直接使用mnist_inference.py中定义的前向传播过程
 	y = mnist_inference.inference(x, regularizer)
 
+	# 后注：注意！！global_step传入损失函数后将被自动更新，这里只给初始值即可，见P86
 	global_step = tf.Variable(0, trainable = False)
 
 	# 和5.2.1小节样例中类似地定义损失函数、学习率、滑动平均操作以及训练过程

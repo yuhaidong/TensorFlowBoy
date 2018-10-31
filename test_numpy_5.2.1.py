@@ -74,6 +74,8 @@ def train(mnist):
 	# 定义存储训练轮数的变量。这个变量不需要计算滑动平均值，所以这里指定这个变量为
 	# 不可训练的变量（trainable=False）。在使用TensorFlow训练神经网络时，
 	# 一般会将代表训练轮数的变量指定为不可训练的参数
+
+	# 后注：注意！！global_step传入损失函数后将被自动更新，这里只给初始值即可，见P86
 	global_step = tf.Variable(0, trainable = False)
 
 	# 给定滑动平均衰减率和训练参数的变量，初始化滑动平均类。在第4章中介绍过给定
@@ -125,6 +127,8 @@ def train(mnist):
 
 	# 使用tf.train.GradientDescentOptimizer优化算法来优化损失函数。
 	# 注意这里损失函数包含了交叉熵损失和L2正则化损失
+
+	# 后注：注意！！minimize函数中传入的global_step将被自动更新，见P86
 	train_step = tf.train.GradientDescentOptimizer(learning_rate) \
 				.minimize(loss, global_step = global_step)
 
