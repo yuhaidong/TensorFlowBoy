@@ -75,7 +75,7 @@ def train(mnist):
 	# 不可训练的变量（trainable=False）。在使用TensorFlow训练神经网络时，
 	# 一般会将代表训练轮数的变量指定为不可训练的参数
 
-	# 后注：注意！！global_step传入损失函数后将被自动更新，这里只给初始值即可，见P86
+	# 后注：注意！！global_step传入反向传播算法函数后将被自动更新，这里只给初始值即可，见P86
 	global_step = tf.Variable(0, trainable = False)
 
 	# 给定滑动平均衰减率和训练参数的变量，初始化滑动平均类。在第4章中介绍过给定
