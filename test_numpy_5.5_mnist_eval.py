@@ -24,11 +24,13 @@ def evaluate(mnist) :
 		# 所以这里用于计算正则化损失的函数被设置为None。
 		y = mnist_inference.inference(x, None)
 
-		# 通过变量重命名的方式来加载模型，这样在前向传播的过程中就不需要调用求滑动平均
-		# 的函数来获取平均值了。这样就可以完全共用mnist_inference.py中定义的前向传播过程
+		# 使用前向传播的结果计算正确率。如果需要对未知的样例进行分类，那么使用
+		# tf.argmax(y, 1)就可以得到输入样例的预测类别了
 		correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
 		accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
+		# 通过变量重命名的方式来加载模型，这样在前向传播的过程中就不需要调用求滑动平均
+		# 的函数来获取平均值了。这样就可以完全共用mnist_inference.py中定义的前向传播过程
 		variable_averages = tf.train.ExponentialMovingAverage(
 							mnist_train.Moving_AVERAGE_DECAY)
 		variables_to_restore = variable_averages.variables_to_restore()
