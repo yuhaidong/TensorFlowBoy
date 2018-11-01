@@ -146,5 +146,14 @@
 	tf.random_normal		随机生成正态分布
 	tf.truncated_normal		随机生成正态分布，但如果随机出来的值偏离平均值超过2个标准差，那么这个数将会被重新随机
 
+12 持久化
+	saver.save(sess, "/path/to/model/model.ckpt")
+	保存了3个文件：
+	1 model.ckpt.mete
+		它保存了TensorFlow计算图的结构。
+	2 model.ckpt
+		它保存了TensorFlow程序中每一个变量的取值。
+	3 checkpoint
+		它保存了一个目录下所有的模型文件列表。
 
 

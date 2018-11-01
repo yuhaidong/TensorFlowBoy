@@ -33,7 +33,9 @@ def evaluate(mnist) :
 		# 的函数来获取平均值了。这样就可以完全共用mnist_inference.py中定义的前向传播过程
 		variable_averages = tf.train.ExponentialMovingAverage(
 							mnist_train.Moving_AVERAGE_DECAY)
+		# 后注：通过variables_to_restore函数生成变量重命名字典，然后被tf.train.Saver调用，就可以直接通过变量名获得滑动平均值
 		variables_to_restore = variable_averages.variables_to_restore()
+		# 后注：重命名字典被tf.train.Saver调用
 		saver = tf.train.Saver(variables_to_restore)
 
 		# 每隔EVAL_INTERVAL_SECS秒调用一次计算正确率的过程以检测训练过程中正确率的变化。
