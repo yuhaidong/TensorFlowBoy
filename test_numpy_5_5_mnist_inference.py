@@ -13,7 +13,7 @@ LAYER1_NODE = 500
 
 # 后注：regularizer为模型的正则化损失
 def get_weight_variable(shape, regularizer):
-	weight = tf.get_variable(
+	weights = tf.get_variable(
 		"weights", shape,
 		initializer = tf.truncated_normal_initializer(stddev = 0.1))
 
