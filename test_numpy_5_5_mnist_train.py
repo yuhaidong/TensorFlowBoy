@@ -43,7 +43,7 @@ def train(mnist):
 	variables_averages_op = variable_averages.apply(
 		tf.trainable_variables())
 	# 后注：计算交叉熵
-	cross_entropy = tf.nn.sparse_softmax_cross_entropy_withlogits(
+	cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(
 		y, tf.argmax(y_, 1))
 	# 后注：计算交叉熵平均值
 	cross_entropy_mean = tf.reduce_mean(cross_entropy)
