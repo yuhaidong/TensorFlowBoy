@@ -6,7 +6,8 @@ test_numpy_4_2_2.py
 
 ## 2 小节5.2.1
 
-test_numpy_5_2_1.py			将前向传播、训练、验证放到一个文件。
+test_numpy_5_2_1.py
+将前向传播、训练、验证放到一个文件。
 
 test_numpy_5_2_1_some.txt		深度学习的功能点总结。
 
