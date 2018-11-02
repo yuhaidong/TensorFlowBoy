@@ -74,7 +74,7 @@ def train(mnist):
 			_, loss_value, step = sess.run([train_op, loss, global_step], 
 											feed_dict = {x: xs, y_ : ys})
 			# 每1000轮保存一次模型
-			if i % 1000 == 0:
+			if i % 100 == 0:
 				# 输出当前模型的情况。这里只输出了模型在当前训练batch上的损失函数大小。通过损失
 				# 函数的大小可以大概了解训练的情况。在验证数据集上的正确率信息会有一个单独的程序
 				# 来生成。
