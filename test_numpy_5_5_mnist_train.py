@@ -66,7 +66,7 @@ def train(mnist):
 	saver = tf.train.Saver()
 
 	with tf.Session() as sess: 
-		tf.initializer_all_variables().run()
+		tf.initialize_all_variables().run()
 
 		# 在训练过程中不再测试模型在验证数据上的表现，验证和测试的过程将会有一个独立的程序来完成。
 		for i in range(TRAINING_STEPS):
