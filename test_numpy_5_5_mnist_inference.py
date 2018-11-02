@@ -14,7 +14,7 @@ LAYER1_NODE = 500
 # 后注：regularizer为模型的正则化损失
 def get_weight_variable(shape, regularizer):
 	weight = tf.get_variable(
-		"weight", shape,
+		"weights", shape,
 		initializer = tf.truncated_normal_initializer(stddev = 0.1))
 
 	# 当给出了正则化生成函数时，将当前变量的正则化损失加入名字为losses的集合。在这里
