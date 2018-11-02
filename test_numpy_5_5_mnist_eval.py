@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 import time
 import tensorflow as tf
-from tensorflow.examples.tutorials.mnist import import_data
+from tensorflow.examples.tutorials.mnist import input_data
 
 # 加载mnist_inference.py和mnist_train.py中定义的常量和函数。
-import mnist_inference
-import mnist_train
+import test_numpy_5_5_mnist_inference
+import test_numpy_5_5_mnist_train
 
 # 每10秒加载一次最新的模型，并在测试数据上测试最新模型的正确率。
 EVAL_INTERVAL_SECS = 10
