@@ -1,8 +1,8 @@
-1# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import os
 
 import tensorflow as tf
-from tensorflow.examples.tutorials.mnist input_data
+from tensorflow.examples.tutorials.mnist import input_data
 
 # 加载mnist_inference.py中定义的常量和前向传播的函数
 import mnist_inference
