@@ -14,7 +14,7 @@ def evaluate(mnist) :
 	with tf.Graph().as_default() as g :
 		# 定义输入输出的格式。
 		x = tf.placeholder(
-				tf.float32, [None, test_numpy_5_5_mnist_inference.INPUT_NPDE], name = 'x-input')
+				tf.float32, [None, test_numpy_5_5_mnist_inference.INPUT_NODE], name = 'x-input')
 		y_ = tf.placeholder(
 				tf.float32, [None, test_numpy_5_5_mnist_inference.OUTPUT_NODE], name = 'y-input')
 		validate_feed = {x: mnist.validation.images, 
