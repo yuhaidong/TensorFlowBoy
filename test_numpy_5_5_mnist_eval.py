@@ -52,8 +52,10 @@ def evaluate(mnist) :
 					# 通过文件名得到模型保存时迭代的轮数
 					global_step = ckpt.model_checkpoint_path \
 										.split('/')[-1].split('-')[-1]
+					# 后注：执行正确率的计算
 					accuracy_score = sess.run(accuracy, 
 										feed_dict = validate_feed)
+					# 后注：输出轮数与正确率
 					print("After %s training step(s), validation "
 							"accuracy = %g" % (global_step, accuracy_score))
 
