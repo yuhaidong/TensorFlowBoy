@@ -1,6 +1,6 @@
 # TensorFlowLearning
 
-## 1 4.2.2
+## 1 小节4.2.2
 
 test_numpy_4_2_2.py
 
