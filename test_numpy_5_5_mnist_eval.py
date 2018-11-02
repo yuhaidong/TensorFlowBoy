@@ -54,7 +54,7 @@ def evaluate(mnist) :
 										.split('/')[-1].split('-')[-1]
 					accuracy_score = sess.run(accuracy, 
 										feed_dict = validate_feed)
-					print("After % training step(s), validation "
+					print("After %s training step(s), validation "
 							"accuracy = %g" % (global_step, accuracy_score))
 
 				else : 
