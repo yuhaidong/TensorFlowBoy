@@ -25,8 +25,8 @@ def train(mnist):
 	# 	tf.float32, [None, test_numpy_5_5_mnist_inference.INPUT_NODE], name = 'x-input')
 	x = tf.placeholder(tf.float32, [
 				BATCH_SIZE, 
-				test_numpy_6_4_1_mnist_inference.IMAGE_SIZE
-				test_numpy_6_4_1_mnist_inference.IMAGE_SIZE
+				test_numpy_6_4_1_mnist_inference.IMAGE_SIZE,
+				test_numpy_6_4_1_mnist_inference.IMAGE_SIZE,
 				test_numpy_6_4_1_mnist_inference.NUM_CHANNELS], name = 'x-input')
 
 	y_ = tf.placeholder(
