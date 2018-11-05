@@ -9,11 +9,11 @@ IMAGE_SIZE = 28
 NUM_CHANNELS = 1
 NUM_LABELS = 10
 
-# 第一层军基层的尺寸和深度
+# 第一层卷积层的尺寸和深度
 CONV1_DEEP = 32
 CONV1_SIZE = 5
 
-# 第二层军基层的尺寸和深度。
+# 第二层卷积层的尺寸和深度。
 CONV2_DEEP = 64
 CONV2_SIZE = 5
 
@@ -25,18 +25,22 @@ FC_SIZE = 512
 # 只在训练时使用。
 def inference(input_tensor, train, regularizer):
 	# 声明第一层卷积层的变量并实现前向传播过程。这个过程和6.3.1小节中介绍的一致。
-	# 通过使用不同的命名空间来隔里不同层的变量，这可以让每一层中的变量命名只需要
+	# 通过使用不同的命名空间来隔离不同层的变量，这可以让每一层中的变量命名只需要
 	# 考虑在当前层的作用，而不需要担心重名的问题。和标准LeNet-5模型不大一样，这里
 	# 定义的卷积层输入28*28*1的原始MNIST图片像素。因为卷积层中使用了全0填充，
 	# 所以输出为28*28*2的矩阵。
-	with tf.variable_scope('layer1-conv2'):
+	with tf.variable_scope('layer1-conv1'):
 		conv1_weights = tf.get_variable(
-			"weight", [CONV1_SIZE, CONV1_SIZE, NUM_CHANNELS, CONV1], 
+			"weight", [CONV1_SIZE, CONV1_SIZE, NUM_CHANNELS, CONV1_DEEP], 
 			initializer = tf.truncated_normal_initializer(stddev = 0.1))
 		conv1_biases = tf.get_variable(
 			"bias", [CONV1_DEEP], initializer = tf.constant_initializer(0.0))
 
 		# 使用边长为5，深度为32的过滤器，过滤器移动的步长为1，且使用全0填充。
+		# 后注：input_tensor，当前节点矩阵（4维：batch，节点矩阵长度，节点矩阵宽度，节点矩阵深度），见P146
+		# 后注：conv1_weights，权重（4维：过滤器长度，过滤器宽度，当前层深度，过滤器深度）
+		# 后注：strides，（对输入节点矩阵进行卷积时）各维度上的步长（4维：1，长度上的步长，宽度上的步长，1）
+		# 后注：padding，填充方法，这里为全0填充
 		conv1 = tf.nn.conv2d(
 			input_tensor, conv1_weights, strides = [1, 1, 1, 1], padding = 'SAME')
 		relu1 = tf.nn.relu(tf.nn.bias_add(conv1, conv1_biases))

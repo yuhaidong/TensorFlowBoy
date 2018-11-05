@@ -147,6 +147,13 @@
 	tf.truncated_normal		随机生成正态分布，但如果随机出来的值偏离平均值超过2个标准差，那么这个数将会被重新随机
 	os.path.join()			拼接文件路径，可以穿入多个路径
 
+	tf.get_variable						创建或者获取变量
+	tf.veriable_scope					生成一个上下文管理器，一般会与tf.get_variable函数共用
+	tf.truncated_normal_initializer		用于初始化变量，可以放在tf.get_variable函数中，见P107表5-2
+
+	tf.nn.conv2d			卷积层前向传播函数，见P146
+	tf.nn.relu				给前向传播后的每一个节点加上偏置项，见P146
+
 12 持久化
 	saver.save(sess, "/path/to/model/model.ckpt")
 	保存了3个文件：
