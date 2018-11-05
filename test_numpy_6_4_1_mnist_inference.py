@@ -29,7 +29,10 @@ def inference(input_tensor, train, regularizer):
 	# 考虑在当前层的作用，而不需要担心重名的问题。和标准LeNet-5模型不大一样，这里
 	# 定义的卷积层输入28*28*1的原始MNIST图片像素。因为卷积层中使用了全0填充，
 	# 所以输出为28*28*2的矩阵。
+
+	# 后注：标准LeNet-5模型为32*32*1，这里因为使用的是MNIST图片像素，所以输入使用的是28*28*1
 	with tf.variable_scope('layer1-conv1'):
+		# 后注：权重变量的尺寸为4维，分别为，长度，宽度，当前层的深度，过滤器的深度
 		conv1_weights = tf.get_variable(
 			"weight", [CONV1_SIZE, CONV1_SIZE, NUM_CHANNELS, CONV1_DEEP], 
 			initializer = tf.truncated_normal_initializer(stddev = 0.1))
@@ -37,12 +40,14 @@ def inference(input_tensor, train, regularizer):
 			"bias", [CONV1_DEEP], initializer = tf.constant_initializer(0.0))
 
 		# 使用边长为5，深度为32的过滤器，过滤器移动的步长为1，且使用全0填充。
+		
 		# 后注：input_tensor，当前节点矩阵（4维：batch，节点矩阵长度，节点矩阵宽度，节点矩阵深度），见P146
 		# 后注：conv1_weights，权重（4维：过滤器长度，过滤器宽度，当前层深度，过滤器深度）
 		# 后注：strides，（对输入节点矩阵进行卷积时）各维度上的步长（4维：1，长度上的步长，宽度上的步长，1）
 		# 后注：padding，填充方法，这里为全0填充
 		conv1 = tf.nn.conv2d(
 			input_tensor, conv1_weights, strides = [1, 1, 1, 1], padding = 'SAME')
+		
 		# 后注：给每一个节点加上偏置项，见P146
 		relu1 = tf.nn.relu(tf.nn.bias_add(conv1, conv1_biases))
 
@@ -50,6 +55,10 @@ def inference(input_tensor, train, regularizer):
 	# 使用全0填充且移动的步长为2。这一层的输入是上一层的输出，也就是28*28*32
 	# 的矩阵。输出为14*14*32的矩阵。
 	with tf.name_scope('layer2-pool1'):
+		# 后注：relu1，当前层的节点矩阵
+		# 后注：ksize，过滤器尺寸
+		# 后注：strides，步长
+		# 后注：padding，填充方法，此处为全0填充
 		pool1 = tf.nn.max_pool(
 			relu1, ksize = [1, 2, 2, 1], strides = [1, 2, 2, 1], padding = 'SAME')
 

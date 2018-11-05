@@ -23,6 +23,8 @@ def train(mnist):
 	#定义输入输出placeholder
 	# x = tf.placeholder(
 	# 	tf.float32, [None, test_numpy_5_5_mnist_inference.INPUT_NODE], name = 'x-input')
+
+	# 后注：输入节点矩阵为[1000, 28, 28, 1]
 	x = tf.placeholder(tf.float32, [
 				BATCH_SIZE, 
 				test_numpy_6_4_1_mnist_inference.IMAGE_SIZE,

@@ -151,8 +151,28 @@
 	tf.veriable_scope					生成一个上下文管理器，一般会与tf.get_variable函数共用
 	tf.truncated_normal_initializer		用于初始化变量，可以放在tf.get_variable函数中，见P107表5-2
 
+11.1 卷积层
+
 	tf.nn.conv2d			卷积层前向传播函数，见P146
-	tf.nn.relu				给前向传播后的每一个节点加上偏置项，见P146
+							1.当前层节点矩阵
+							2.卷积层的权重信息（4维：长度，宽度，当前层深度，过滤器深度）
+							3.多维度上的步长（4维：1，长度，宽度，1）
+							4.填充方法
+
+	tf.nn.bias_add			给前向传播的每一个节点加上偏置项，见P146
+							1.卷积层前向传播方法
+							2.偏置项
+
+	tf.nn.relu				ReLU激活函数，用来去线性化
+
+11.2 池化层
+
+	tf.nn.max.pool			最大池化层的前向传播，参数与tf.nn.conv2d函数类似，见P148
+							1.当前层的节点矩阵
+							2.过滤器尺寸（4维：1，长度，宽度，1）
+							3.步长（4维：1，长度，宽度，1）
+							4.填充方法
+
 
 12 持久化
 	saver.save(sess, "/path/to/model/model.ckpt")
