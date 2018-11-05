@@ -66,7 +66,7 @@ def inference(input_tensor, train, regularizer):
 	# 输出为14*14*64
 	with tf.variable_scope('layer3-conv2'):
 		conv2_weights = tf.get_variable(
-			weight, [CONV2_SIZE, CONV2_SIZE, CONV1_DEEP, CONV2_DEEP], 
+			"weight", [CONV2_SIZE, CONV2_SIZE, CONV1_DEEP, CONV2_DEEP], 
 			initializer = tf.truncated_normal_initializer(stddev = 0.1))
 		conv2_biases = tf.get_variable(
 			"bias", [CONV2_DEEP], 
