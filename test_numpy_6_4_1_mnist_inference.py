@@ -109,7 +109,7 @@ def inference(input_tensor, train, regularizer):
 
 		# 只有全连接层的权重需要加入正则化。
 		if regularizer != None:
-			tf.add_to_collecction('losses', regularizer(fc1_weights))
+			tf.add_to_collection('losses', regularizer(fc1_weights))
 
 		fc1_biases = tf.get_variable(
 			"bias", [FC_SIZE], initializer = tf.constant_initializer(0.1))
