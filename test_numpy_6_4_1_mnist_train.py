@@ -4,7 +4,7 @@ import os
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 
-# 加载mnist_inference.py中定义的常量和前向传播的函数2
+# 加载mnist_inference.py中定义的常量和前向传播的函数
 import test_numpy_6_4_1_mnist_inference
 
 # 配置神经网络的参数
