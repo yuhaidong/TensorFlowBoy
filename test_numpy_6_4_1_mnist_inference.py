@@ -43,6 +43,7 @@ def inference(input_tensor, train, regularizer):
 		# 后注：padding，填充方法，这里为全0填充
 		conv1 = tf.nn.conv2d(
 			input_tensor, conv1_weights, strides = [1, 1, 1, 1], padding = 'SAME')
+		# 后注：给每一个节点加上偏置项，见P146
 		relu1 = tf.nn.relu(tf.nn.bias_add(conv1, conv1_biases))
 
 	# 实现第二层赤化层的前向传播过程。这里选用最大池化层，池化层过滤器的边长为2，
