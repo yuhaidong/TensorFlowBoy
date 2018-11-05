@@ -127,7 +127,7 @@ def inference(input_tensor, train, regularizer):
 			initializer = tf.truncated_normal_initializer(stddev = 0.1))
 
 		if regularizer != None:
-			tf.add_to_collecction('losses', regularizer(fc2_weights))
+			tf.add_to_collection('losses', regularizer(fc2_weights))
 
 		fc2_biases = tf.get_variable(
 			"bias", [NUM_LABELS], 
