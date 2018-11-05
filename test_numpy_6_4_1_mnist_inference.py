@@ -108,7 +108,7 @@ def inference(input_tensor, train, regularizer):
 			initializer = tf.truncated_normal_initializer(stddev = 0.1))
 
 		# 只有全连接层的权重需要加入正则化。
-		if regularizer !=Node:
+		if regularizer != None:
 			tf.add_to_collecction('losses', regularizer(fc1_weights))
 
 		fc1_biases = tf.get_variable(
