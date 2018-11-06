@@ -18,7 +18,7 @@ MOVING_AVERAGE_DECAY = 0.99		# 后注：滑动平均衰减率
 
 # 模型保存的路径和文件名
 # MODEL_SAVE_PATH = "/path/to/model"
-MODEL_SAVE_PATH = "/tmp/tttt/TensorFlowBoy/model"
+MODEL_SAVE_PATH = "/home/work/tmp/tttt/TensorFlowBoy/model"
 MODEL_NAME = "model.ckpt"
 
 def train(mnist):
