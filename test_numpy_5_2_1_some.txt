@@ -151,6 +151,10 @@
 	tf.veriable_scope					生成一个上下文管理器，一般会与tf.get_variable函数共用
 	tf.truncated_normal_initializer		用于初始化变量，可以放在tf.get_variable函数中，见P107表5-2
 
+	tf.train.AdamOptimizer				反向传播算法，优化神经网络中的参数，见P62
+	tf.train.GradientDescentOptimizer	反向传播算法，可以传入指数衰减的学习率、global_step，global_step会自动更新，从而使得学习率
+										也自动更新
+
 11.1 卷积层
 
 	tf.nn.conv2d			卷积层前向传播函数，见P146
