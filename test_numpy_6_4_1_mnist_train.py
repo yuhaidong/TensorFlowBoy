@@ -2,6 +2,7 @@
 import os
 
 import tensorflow as tf
+import numpy as np
 from tensorflow.examples.tutorials.mnist import input_data
 
 # 加载mnist_inference.py中定义的常量和前向传播的函数
