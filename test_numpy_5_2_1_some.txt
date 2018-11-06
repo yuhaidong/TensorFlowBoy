@@ -153,7 +153,7 @@
 
 	tf.train.AdamOptimizer				反向传播算法，优化神经网络中的参数，见P62
 	tf.train.GradientDescentOptimizer	反向传播算法，可以传入指数衰减的学习率、global_step，global_step会自动更新，从而使得学习率
-										也自动更新
+										也自动更新，见P86
 
 11.1 卷积层
 
