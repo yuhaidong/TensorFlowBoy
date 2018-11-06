@@ -81,7 +81,7 @@ def train(mnist):
 		for i in range(TRAINING_STEPS):
 			xs, ys = mnist.train.next_batch(BATCH_SIZE)
 
-			reshaped_xs = np.reshaped(xs, (BATCH_SIZE, 
+			reshaped_xs = np.reshape(xs, (BATCH_SIZE, 
 											test_numpy_6_4_1_mnist_inference.IMAGE_SIZE, 
 											test_numpy_6_4_1_mnist_inference.IMAGE_SIZE,
 											test_numpy_6_4_1_mnist_inference.NUM_CHANNELS))
