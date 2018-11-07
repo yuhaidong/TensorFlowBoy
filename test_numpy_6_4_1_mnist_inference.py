@@ -60,7 +60,7 @@ def inference(input_tensor, train, regularizer):
 		# 后注：strides，步长
 		# 后注：padding，填充方法，此处为全0填充
 		pool1 = tf.nn.max_pool(
-			relu1, ksize = [1, 2, 2, 1], strides = [1, 2, 2, 1], padding = 'SAME')
+			relu1, ksize = [1, 2, 2, 1], strides = [1, 2, 2, 1], padding = 'VALID')
 
 	# 声明第三层卷积层的变量并实现前向传播过程。这一层的输入为14*14*32的矩阵
 	# 输出为14*14*64
