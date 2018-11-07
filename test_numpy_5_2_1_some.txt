@@ -148,6 +148,7 @@
 	os.path.join()			拼接文件路径，可以穿入多个路径
 
 	mnist.train.next_batch(batch_size)	随机从MNIST训练数据集中抽取batch_size个样本输入神经网络
+	np.reshape							转换矩阵的维度，见P151
 
 	tf.get_variable						创建或者获取变量，见P107
 	tf.veriable_scope					生成一个上下文管理器，一般会与tf.get_variable函数共用
