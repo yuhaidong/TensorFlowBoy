@@ -147,9 +147,12 @@
 	tf.truncated_normal		随机生成正态分布，但如果随机出来的值偏离平均值超过2个标准差，那么这个数将会被重新随机
 	os.path.join()			拼接文件路径，可以穿入多个路径
 
-	tf.get_variable						创建或者获取变量
+	mnist.train.next_batch(batch_size)	随机从MNIST训练数据集中抽取batch_size个样本输入神经网络
+
+	tf.get_variable						创建或者获取变量，见P107
 	tf.veriable_scope					生成一个上下文管理器，一般会与tf.get_variable函数共用
 	tf.truncated_normal_initializer		用于初始化变量，可以放在tf.get_variable函数中，见P107表5-2
+	tf.train.Saver()					声明这个类，然后用它的save()方法用于保存模型。
 
 	tf.train.AdamOptimizer				反向传播算法，优化神经网络中的参数，见P62
 	tf.train.GradientDescentOptimizer	反向传播算法，可以传入指数衰减的学习率、global_step，global_step会自动更新，从而使得学习率
