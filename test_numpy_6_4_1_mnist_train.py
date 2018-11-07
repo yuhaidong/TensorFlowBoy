@@ -29,10 +29,11 @@ def train(mnist):
 
 	# 后注：输入节点矩阵为[1000, 28, 28, 1]
 	x = tf.placeholder(tf.float32, [
-				BATCH_SIZE, 
-				test_numpy_6_4_1_mnist_inference.IMAGE_SIZE,
-				test_numpy_6_4_1_mnist_inference.IMAGE_SIZE,
-				test_numpy_6_4_1_mnist_inference.NUM_CHANNELS], name = 'x-input')
+				BATCH_SIZE, 										# 第一维表示一个batch中样例的个数。
+				test_numpy_6_4_1_mnist_inference.IMAGE_SIZE,		# 第二维和第三维表示图片的尺寸。
+				test_numpy_6_4_1_mnist_inference.IMAGE_SIZE,		# 
+				test_numpy_6_4_1_mnist_inference.NUM_CHANNELS], 	# 第四维表示图片的深度，对于RBG格式的图片，深度为3。
+				name = 'x-input')
 
 	y_ = tf.placeholder(
 		tf.float32, [None, test_numpy_6_4_1_mnist_inference.OUTPUT_NODE], name = 'y-input')
