@@ -42,7 +42,7 @@ def train(mnist):
 	regularizer = tf.contrib.layers.l2_regularizer(REGULARIZATION_RATE)
 
 	# 直接使用mnist_inference.py中定义的前向传播过程
-	y = test_numpy_6_4_1_mnist_inference.inference(x, 1, regularizer)
+	y = test_numpy_6_4_1_mnist_inference.inference(x, None, regularizer)
 
 	# 后注：注意！！global_step传入反向传播算法函数后将被自动更新，这里只给初始值即可，见P86
 	global_step = tf.Variable(0, trainable = False)
