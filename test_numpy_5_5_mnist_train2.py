@@ -62,7 +62,7 @@ def train(mnist):
 
 	with tf.control_dependencies([train_step, variables_averages_op]) :
 		train_op = tf.no_op(name = 'train')
-		print(train_step)
+		#print(train_step)
 
 	# 初始化TensorFlow持久化类
 	saver = tf.train.Saver()
@@ -75,7 +75,7 @@ def train(mnist):
 			xs, ys = mnist.train.next_batch(BATCH_SIZE)
 			#_, loss_value, step = sess.run([train_op, loss, global_step], 
 			#								feed_dict = {x: xs, y_ : ys})								
-			aa, loss_value, step = sess.run([train_op, loss, global_step], 
+			aa, loss_value, step = sess.run([train_step, loss, global_step], 
 											feed_dict = {x: xs, y_ : ys})
 			# 每1000轮保存一次模型
 			if i % 10 == 0:
