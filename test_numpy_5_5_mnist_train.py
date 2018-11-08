@@ -73,9 +73,9 @@ def train(mnist):
 		for i in range(TRAINING_STEPS):
 			xs, ys = mnist.train.next_batch(BATCH_SIZE)
 			#_, loss_value, step = sess.run([train_op, loss, global_step], 
-			#
+			#								feed_dict = {x: xs, y_ : ys})								
 			aa, loss_value, step = sess.run([train_op, loss, global_step], 
-											feed_dict = {x: xs, y_ : ys})								feed_dict = {x: xs, y_ : ys})
+											feed_dict = {x: xs, y_ : ys})
 			# 每1000轮保存一次模型
 			if i % 10 == 0:
 				# 输出当前模型的情况。这里只输出了模型在当前训练batch上的损失函数大小。通过损失
