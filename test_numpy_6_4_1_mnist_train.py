@@ -92,7 +92,7 @@ def train(mnist):
 
 			# _, loss_value, step = sess.run([train_op, loss, global_step], 
 			#								feed_dict = {x: xs, y_ : ys})
-			_, loss_value, step = sess.run([train_op, loss, global_step], 
+			aa, loss_value, step = sess.run([train_op, loss, global_step], 
 											feed_dict = {x: reshaped_xs, y_ : ys})
 			# 每1000轮保存一次模型
 			if i % 1 == 0:
@@ -100,7 +100,7 @@ def train(mnist):
 				# 函数的大小可以大概了解训练的情况。在验证数据集上的正确率信息会有一个单独的程序
 				# 来生成。
 				print("After %d training step(s), loss on training "
-						"batch is %g." % (step, loss_value))
+						"batch is %g.aa=%g" % (step, loss_value), aa)
 
 				# 保存当前的模型。注意这里给出了global_step参数，这样可以让每个被保存模型的文件名
 				# 末尾加上训练的轮数，比如“model.ckpt-1000”表示训练1000轮之后得到的模型
