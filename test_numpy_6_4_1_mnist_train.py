@@ -92,7 +92,7 @@ def train(mnist):
 
 			# _, loss_value, step = sess.run([train_op, loss, global_step], 
 			#								feed_dict = {x: xs, y_ : ys})
-			print(reshaped_xs[0])
+			#print(reshaped_xs[0])
 			aa, loss_value, step = sess.run([train_step, loss, global_step], 
 											feed_dict = {x: reshaped_xs, y_ : ys})
 			# 每1000轮保存一次模型
@@ -113,8 +113,8 @@ def train(mnist):
 def main(argv = None):
 	# 声明处理MNIST数据集的类，这个类在初始化时会自动下载数据。
 	mnist = input_data.read_data_sets("/tmp/data", one_hot = True)
-	print("Example training data: ", mnist.train.images[0]) 
-	print("Example training data label: ", mnist.train.labels[0])
+	#print("Example training data: ", mnist.train.images[0]) 
+	#print("Example training data label: ", mnist.train.labels[0])
 	train(mnist)
 
 if __name__ == '__main__':
