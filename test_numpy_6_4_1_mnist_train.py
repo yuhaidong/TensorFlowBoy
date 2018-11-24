@@ -92,7 +92,7 @@ def train(mnist):
 
 			# _, loss_value, step = sess.run([train_op, loss, global_step], 
 			#								feed_dict = {x: xs, y_ : ys})
-			#print(reshaped_xs)
+			print(reshaped_xs[0])
 			aa, loss_value, step = sess.run([train_step, loss, global_step], 
 											feed_dict = {x: reshaped_xs, y_ : ys})
 			# 每1000轮保存一次模型
