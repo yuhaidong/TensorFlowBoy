@@ -90,6 +90,7 @@ def train(mnist):
 def main(argv = None):
 	# 声明处理MNIST数据集的类，这个类在初始化时会自动下载数据。
 	mnist = input_data.read_data_sets("/tmp/data", one_hot = True)
+	print("Training data size: ", mnist.train.num_examples)
 	train(mnist)
 
 if __name__ == '__main__':
