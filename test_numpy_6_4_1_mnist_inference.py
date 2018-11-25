@@ -83,18 +83,18 @@ def inference(input_tensor, train, regularizer):
 		pool2 = tf.nn.max_pool(
 			relu2, ksize = [1, 2, 2, 1], strides = [1, 2, 2, 1], padding = 'SAME')
 
-	# 将第四层池化层的输出转化为第五层全连接层的输入格式。第四层的输出为7*7*64的矩阵，
-	# 然后第五层全连接层需要的输入格式为向量，所以在这里需要将这个7*7*64的矩阵拉直成一
-	# 个向量。pool2.get_shape函数可以得到第四层输出矩阵的维度而不需要手工计算。注意
-	# 因为每一层神经网络的输入输出都为一个batch的矩阵，所以这里得到的维度也包含了一个
-	# batch中数据的个数。
+		# 将第四层池化层的输出转化为第五层全连接层的输入格式。第四层的输出为7*7*64的矩阵，
+		# 然后第五层全连接层需要的输入格式为向量，所以在这里需要将这个7*7*64的矩阵拉直成一
+		# 个向量。pool2.get_shape函数可以得到第四层输出矩阵的维度而不需要手工计算。注意
+		# 因为每一层神经网络的输入输出都为一个batch的矩阵，所以这里得到的维度也包含了一个
+		# batch中数据的个数。
 		pool_shape = pool2.get_shape().as_list()
 	
-	# 计算将矩阵拉直成向量之后的长度，这个长度就是矩阵长宽及深度的乘积。注意这里
-	# pool_shape[0]为一个batch中数据的个数。
+		# 计算将矩阵拉直成向量之后的长度，这个长度就是矩阵长宽及深度的乘积。注意这里
+		# pool_shape[0]为一个batch中数据的个数。
 		nodes = pool_shape[1] * pool_shape[2] * pool_shape[3]
 
-	# 通过tf.reshape函数将第四层的输出变成一个batch的向量。
+		# 通过tf.reshape函数将第四层的输出变成一个batch的向量。
 		reshaped = tf.reshape(pool2, [pool_shape[0], nodes])
 
 	# 声明第五层全连接层的变量并实现前向传播过程这一层的输入是拉直之后的一组向量，
