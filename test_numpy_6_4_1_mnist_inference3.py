@@ -23,6 +23,7 @@ def inference(input_tensor, train, regularizer):
         conv1_biases = tf.get_variable("bias", [CONV1_DEEP], initializer=tf.constant_initializer(0.0))
         conv1 = tf.nn.conv2d(input_tensor, conv1_weights, strides=[1, 1, 1, 1], padding='SAME')
         relu1 = tf.nn.relu(tf.nn.bias_add(conv1, conv1_biases))
+        print('333333333333--------')
 
     with tf.name_scope("layer2-pool1"):
         pool1 = tf.nn.max_pool(relu1, ksize = [1,2,2,1],strides=[1,2,2,1],padding="SAME")
