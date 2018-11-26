@@ -6,11 +6,14 @@ import numpy as np
 from tensorflow.examples.tutorials.mnist import input_data
 
 # 加载mnist_inference.py中定义的常量和前向传播的函数
-import test_numpy_6_4_1_mnist_inference3
+import test_numpy_6_4_1_mnist_inference
 
 # 配置神经网络的参数
 BATCH_SIZE = 1000				# 后注：一个训练batch中的训练数据个数
-LEARNING_RATE_BASE = 0.8		# 后注：训练的学习率
+LEARNING_RATE_BASE = 0.01		# 后注：训练的学习率
+								# 后注：注意！！原书内容出错！这里应该是0.01，书上是0.8，但是书上指定的源代码是正确的为0.01
+								# 后注：学习率不设置好对训练会有很大影响，5.5节的代码的损失值立刻就收敛到1以内了
+								# 后注：但是6.4的代码的损失值会收敛得特别慢
 LEARNING_RATE_DECAY = 0.99		# 后注：学习率的衰减率
 REGULARIZATION_RATE = 0.0001	# 后注：描述训练模型复杂度的正则化项在损失函数中的系数，即“J(θ)+λR(w)”中的λ
 TRAINING_STEPS = 30000			# 后注：训练轮数
@@ -30,19 +33,19 @@ def train(mnist):
 	# 后注：输入节点矩阵为[1000, 28, 28, 1]
 	x = tf.placeholder(tf.float32, [
 				BATCH_SIZE, 										# 第一维表示一个batch中样例的个数。
-				test_numpy_6_4_1_mnist_inference3.IMAGE_SIZE,		# 第二维和第三维表示图片的尺寸。
-				test_numpy_6_4_1_mnist_inference3.IMAGE_SIZE,		# 
-				test_numpy_6_4_1_mnist_inference3.NUM_CHANNELS], 	# 第四维表示图片的深度，对于RBG格式的图片，深度为3。
+				test_numpy_6_4_1_mnist_inference.IMAGE_SIZE,		# 第二维和第三维表示图片的尺寸。
+				test_numpy_6_4_1_mnist_inference.IMAGE_SIZE,		# 
+				test_numpy_6_4_1_mnist_inference.NUM_CHANNELS], 	# 第四维表示图片的深度，对于RBG格式的图片，深度为3。
 				name = 'x-input')
 
 	y_ = tf.placeholder(
-		tf.float32, [None, test_numpy_6_4_1_mnist_inference3.OUTPUT_NODE], name = 'y-input')
+		tf.float32, [None, test_numpy_6_4_1_mnist_inference.OUTPUT_NODE], name = 'y-input')
 
 	# 后注：计算模型的正则化损失
 	regularizer = tf.contrib.layers.l2_regularizer(REGULARIZATION_RATE)
 
 	# 直接使用mnist_inference.py中定义的前向传播过程
-	y = test_numpy_6_4_1_mnist_inference3.inference(x, 1, regularizer)
+	y = test_numpy_6_4_1_mnist_inference.inference(x, 1, regularizer)
 
 	# 后注：注意！！global_step传入反向传播算法函数后将被自动更新，这里只给初始值即可，见P86
 	global_step = tf.Variable(0, trainable = False)
@@ -86,9 +89,9 @@ def train(mnist):
 
 			# 类似地将输入的训练数据格式调整为一个四维矩阵，并将这个调整后的数据传入sess.run过程。
 			reshaped_xs = np.reshape(xs, (BATCH_SIZE, 
-											test_numpy_6_4_1_mnist_inference3.IMAGE_SIZE, 
-											test_numpy_6_4_1_mnist_inference3.IMAGE_SIZE,
-											test_numpy_6_4_1_mnist_inference3.NUM_CHANNELS))
+											test_numpy_6_4_1_mnist_inference.IMAGE_SIZE, 
+											test_numpy_6_4_1_mnist_inference.IMAGE_SIZE,
+											test_numpy_6_4_1_mnist_inference.NUM_CHANNELS))
 
 			# _, loss_value, step = sess.run([train_op, loss, global_step], 
 			#								feed_dict = {x: xs, y_ : ys})
