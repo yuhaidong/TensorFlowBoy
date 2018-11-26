@@ -52,7 +52,7 @@ def train(mnist):
 	loss = cross_entropy_mean + tf.add_n(tf.get_collection('losses'))
 	# 后注：学习率
 	learning_rate = tf.train.exponential_decay(
-		LEARNING_RATE_DECAY, 
+		LEARNING_RATE_BASE, 
 		global_step, 
 		mnist.train.num_examples / BATCH_SIZE, 
 		LEARNING_RATE_DECAY)
